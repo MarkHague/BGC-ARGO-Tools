@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from nan_helper import nan_helper
 
-def save_meltbloom2(rtc = 0.1, bl = 0, DIR = "/Users/markhague/Google_Drive/ARGO/LOWRES"):
+def save_meltbloom2(rtc = 0.1, bl = 0, DIR = ''):
     # bl = number of levels to average below the estimated mixed layer
     # rtc =  realized degree of cooling over this winter surface layer - see Hague & Vichi, 2020, Biogeosciences
     # DIR = directory where float files are located, as well as where output will be saved 
@@ -461,7 +461,7 @@ def save_meltbloom2(rtc = 0.1, bl = 0, DIR = "/Users/markhague/Google_Drive/ARGO
 
     return bloomweeks, bloomdays, bloomweeks_m, bloomyears, meltweeks, meltdays, lons, lats, files, mld_gi, gia_week
 
-bloomweeks, bloomdays, bloomweeks_m, bloomyears, meltweeks, meltdays, lons, lats, files, mld_gi, gia_week = save_meltbloom2(rtc = 0.1,bl = 0)
+bloomweeks, bloomdays, bloomweeks_m, bloomyears, meltweeks, meltdays, lons, lats, files, mld_gi, gia_week = save_meltbloom2(rtc = 0.1,bl = 0, DIR = '')
 dsb = xr.Dataset({'bloomweeks': (['e'], bloomweeks),
                   'bloomdays': (['e'], bloomdays),
                   'bloomweeks_max': (['e'], bloomweeks_m),
@@ -473,4 +473,4 @@ dsb = xr.Dataset({'bloomweeks': (['e'], bloomweeks),
                  'lats': (['e'], lats),
                  'files': (['e'], files)})
 
-#dsb.to_netcdf(DIR+'/meltbloom_gia.nc', format='NETCDF4_CLASSIC')
+dsb.to_netcdf(DIR+'/out.nc', format='NETCDF4_CLASSIC')
