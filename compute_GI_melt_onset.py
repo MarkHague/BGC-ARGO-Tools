@@ -1,3 +1,6 @@
+# Computes the growth initiation (GI) timing and the timing of the sea ice melt onset - see Hague & Vichi, 2020, Biogeosciences
+# Writes the output to netcdf, along with the other information such as average location and mean mixed layer depth at GI
+
 import numpy as np
 import xarray as xr
 import gsw
@@ -461,14 +464,14 @@ def save_meltbloom2(rtc = 0.1, bl = 0, DIR = ''):
 
     return bloomweeks, bloomdays, bloomweeks_m, bloomyears, meltweeks, meltdays, lons, lats, files, mld_gi, gia_week
 
-bloomweeks, bloomdays, bloomweeks_m, bloomyears, meltweeks, meltdays, lons, lats, files, mld_gi, gia_week = save_meltbloom2(rtc = 0.1,bl = 0, DIR = '')
+bloomweeks, bloomdays, bloomweeks_m, bloomyears, meltweeks, meltdays, lons, lats, files, mld_gi = save_meltbloom2(rtc = 0.1,bl = 0, DIR = '')
 dsb = xr.Dataset({'bloomweeks': (['e'], bloomweeks),
                   'bloomdays': (['e'], bloomdays),
                   'bloomweeks_max': (['e'], bloomweeks_m),
                   'bloomyears': (['e'], bloomyears),
                   'meltweeks': (['e'], meltweeks),
                   'meltdays': (['e'], meltdays),
-                  'GI_Ted2014': (['e'], gia_week),
+                  'mld_gi': (['e'], mld_gi),
                  'lons': (['e'], lons),
                  'lats': (['e'], lats),
                  'files': (['e'], files)})
